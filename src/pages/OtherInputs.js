@@ -3,24 +3,19 @@ import styled from 'styled-components';
 
 const OtherInputs = () => {
   const [values, setValues] = useState({
-    name: '',
-    password: '',
-    email: '',
+    age: '',
+    gender: '',
   });
 
   const [touched, setTouched] = useState({
-    name: false,
-    password: false,
-    email: false,
+    age: false,
+    gender: false,
   });
 
   const [errors, setErrors] = useState({
-    name: '필수 입력 값입니다.',
-    password: '필수 입력 값입니다.',
-    email: '필수 입력 값입니다.',
+    age: '필수 입력 값입니다.',
+    gender: '필수 입력 값입니다.',
   });
-
-  // const [changed, setChanged]
 
   const validate = (name, value) => {
     if (!value) {
@@ -65,47 +60,49 @@ const OtherInputs = () => {
     alert(JSON.stringify(values, null, 2));
   };
 
-  console.log('isErrors:', isErrors());
-
   return (
     <div>
       <Label>
-        <span>이름</span>
-        <input
-          name="name"
-          type="text"
-          value={values.name}
+        <span>연령대</span>
+        <select
+          name="age"
+          value={values.age}
           onChange={handleChange}
           onBlur={handleBlur}
-        />
-        {touched.name && errors.name && <Error>{errors.name}</Error>}
+        >
+          <option value="">-</option>
+          <option value="10">10대</option>
+          <option value="20">20대</option>
+          <option value="30">30대</option>
+          <option value="40">40대</option>
+          <option value="50">50대 이상</option>
+        </select>
+        {touched.age && errors.age && <Error>{errors.age}</Error>}
       </Label>
 
-      <Label>
-        <span>비밀번호</span>
-        <input
-          name="password"
-          type="password"
-          value={values.password}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        {touched.password && errors.password && (
-          <Error>{errors.password}</Error>
-        )}
-      </Label>
-
-      <Label>
-        <span>이메일</span>
-        <input
-          name="email"
-          type="email"
-          value={values.email}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        {touched.email && errors.email && <Error>{errors.email}</Error>}
-      </Label>
+      <RadioContainer>
+        <span>성별</span>
+        <label>
+          <input
+            type="radio"
+            name="gender"
+            value="male"
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <span>남</span>
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="gender"
+            value="female"
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <span>여</span>
+        </label>
+      </RadioContainer>
 
       <div>
         <button onClick={handleSubmit} disabled={isErrors()}>
@@ -124,6 +121,12 @@ const Label = styled.label`
 
 const Error = styled.div`
   color: red;
+`;
+
+const RadioContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
 `;
 
 export default OtherInputs;

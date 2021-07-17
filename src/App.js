@@ -1,22 +1,29 @@
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Basic from './pages/Basic';
+import OtherInputs from './pages/OtherInputs';
 
 function App() {
   return (
     <Router>
       <Header>
-        <nav>
-          <div>
+        <Nav>
+          <span>
             <Link to="/basic">Basic</Link>
-          </div>
-        </nav>
+          </span>
+          <span>
+            <Link to="/otherinputs">Other Inputs</Link>
+          </span>
+        </Nav>
       </Header>
 
       <Main>
         <Switch>
-          <Route path="/">
+          <Route path="/basic">
             <Basic />
+          </Route>
+          <Route path="/otherinputs">
+            <OtherInputs />
           </Route>
         </Switch>
       </Main>
@@ -34,6 +41,11 @@ const Header = styled.header`
 
 const Main = styled.main`
   padding: 10px;
+`;
+
+const Nav = styled.nav`
+  display: flex;
+  gap: 10px;
 `;
 
 export default App;

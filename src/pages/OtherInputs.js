@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const Basic = () => {
+const OtherInputs = () => {
   const [values, setValues] = useState({
     name: '',
     password: '',
@@ -19,6 +19,8 @@ const Basic = () => {
     password: '필수 입력 값입니다.',
     email: '필수 입력 값입니다.',
   });
+
+  // const [changed, setChanged]
 
   const validate = (name, value) => {
     if (!value) {
@@ -62,6 +64,8 @@ const Basic = () => {
   const handleSubmit = () => {
     alert(JSON.stringify(values, null, 2));
   };
+
+  console.log('isErrors:', isErrors());
 
   return (
     <div>
@@ -122,4 +126,4 @@ const Error = styled.div`
   color: red;
 `;
 
-export default Basic;
+export default OtherInputs;
